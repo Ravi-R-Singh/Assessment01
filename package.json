@@ -2,18 +2,24 @@
   "name": "bmo_assessment",
   "version": "1.0.0",
   "description": "Project made for coding assessment for BMO Capital Markets",
-  "main": "index.js",
+  "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Ravi-R-Singh/Assessment01.git"
+    "url": "https://github.com/Ravi-R-Singh/Assessment01.git"
   },
   "author": "Ravi Singh",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/Ravi-R-Singh/Assessment01/issues"
   },
-  "homepage": "https://github.com/Ravi-R-Singh/Assessment01#readme"
+  "homepage": "https://github.com/Ravi-R-Singh/Assessment01#readme",
+  "dependencies": {
+    "axios": "^0.27.2",
+    "calculate-correlation": "^1.2.3",
+    "express": "^4.18.1",
+    "moment": "^2.29.4"
+  }
 }

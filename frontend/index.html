@@ -1,0 +1,56 @@
+<body>
+    <script>
+        function updatePage(data) {
+            console.log(data.fxData.min);
+            document.getElementById("USDCAD High").innerText = data.fxData.max;
+            document.getElementById("USDCAD Low").innerText = data.fxData.min;
+            document.getElementById("USDCAD Mean").innerText = data.fxData.mean;
+            document.getElementById("CORRA High").innerText = data.corraData.max;
+            document.getElementById("CORRA Low").innerText = data.corraData.min;
+            document.getElementById("CORRA Mean").innerText = data.corraData.mean;
+            document.getElementById("Correlation Coefficient Value").innerText = data.coefficientData;
+        }
+
+        function sendRequest() {
+            let url = `/data?startDate=${document.getElementById("Start Date").value}&endDate=${document.getElementById("End Date").value}`;
+            fetch(url)
+            .then(response => response.json())
+            .then(res => {
+                if (res.status == 200) {
+                    updatePage(res.body);
+                }   
+                else if (res.status == 400) {
+                    alert(res.text);
+                } else {
+                    alert("An error occurred while processing your request, please check server logs.")
+                }
+            }).catch((err) => {
+                console.log(err);
+            });            
+        }
+    </script>
+    <h1>Correlation</h1>
+    <div>
+        Start date: <input id="Start Date"></input>
+        End date: <input id="End Date"></input>
+    </div>
+    <input type="button" value="Get Data" onclick="sendRequest()" />
+    <div>
+        <div class="USDCAD Data">
+            USD/CAD 
+            <p>High <span id="USDCAD High"> 0 </span></p>
+            <p>Low <span id="USDCAD Low"> 0 </span></p>
+            <p>Mean <span id="USDCAD Mean"> 0 </span></p>
+        </div>
+        <div class="CORRA Data">
+            CORRA
+            <p>High <span id="CORRA High"> 0 </span></p>
+            <p>Low <span id="CORRA Low"> 0 </span></p>
+            <p>Mean <span id="CORRA Mean"> 0 </span></p>
+        </div>
+        <div class="Correlation Coefficient Data">
+            Correlation Coefficient <span id="Correlation Coefficient Value"> 0 </span>
+        </div>
+    </div>
+</body>
+
